@@ -67,7 +67,7 @@ attr_reader :FFT, :AudioIn
   end
   #fin
 
-  #sunguleé
+  #Sunguleé
   def sungulee
     push
       translate width/2, height/2
@@ -86,9 +86,9 @@ attr_reader :FFT, :AudioIn
   def y1 arg
     sin(arg/3)*350
   end
-
   #fin
-
+  
+  #Jolon
   def jolon arg
     push
       no_fill
@@ -97,13 +97,15 @@ attr_reader :FFT, :AudioIn
       ellipse width/2, height/2, arg*sin(frame_count*0.020),arg*sin(frame_count*0.008)
     pop
   end
-
+  #fin
+  
+  #Ma Lusinga
   def lusingas
     push #Lumbá
       text_size 90
       text_align CENTER
       fill 255# 171+sin(frame_count*0.04)*171, 222, 227+cos(frame_count*0.04)*227
-      text "ANSETROS",width/2, 200
+      text "MA ANSETRO",width/2, 200
       text_size 45
       text "PRIMITIVAS", width/2, 250 
     pop
@@ -126,6 +128,8 @@ attr_reader :FFT, :AudioIn
       end
     pop
   end
+  #fin
+
   def osilacion arg
     @fft.spectrum[arg]*15#000
   end
@@ -133,5 +137,4 @@ attr_reader :FFT, :AudioIn
     fill r,g,b,a
     rect 0, 0, width, height
   end
-
 end
