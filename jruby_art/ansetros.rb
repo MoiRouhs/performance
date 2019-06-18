@@ -1,5 +1,5 @@
 # coding: utf-8
-class Ansetros < Processing::App
+class maAnsetro < Processing::App
 load_library:bunde   
 load_library :sound
 include_package 'processing.sound'
@@ -8,14 +8,14 @@ attr_reader :FFT, :AudioIn
 
   def settings
     full_screen P2D
-    smooth 8
+    smooth 4
     @bands = 1024
     @apura = 0
     iloza
   end
   
   def setup
-    sketch_title 'ANSETROS'
+    sketch_title 'MA ANSETRO'
 
     @fft = FFT.new(self,@bands)
     entrada = AudioIn.new(self, 0) 
