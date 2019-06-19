@@ -94,7 +94,7 @@ attr_reader :FFT, :AudioIn
       no_fill
       stroke_weight 5# 2*osilacion(@bands/2+cos(millis)*@bands/2)    
       stroke 255# 126+sin(frame_count*0.04)*125,126+sin(frame_count*0.03)*125,126+sin(frame_count*0.02)*125
-      ellipse width/2, height/2, arg*sin(frame_count*0.020),arg*sin(frame_count*0.008)
+      ellipse width/2, height/2, arg*sin(frame_count*0.010),arg# *sin(frame_count*0.010)
     pop
   end
   #fin
