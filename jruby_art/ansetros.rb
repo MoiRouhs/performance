@@ -1,9 +1,7 @@
 # coding: utf-8
-class maAnsetro < Processing::App
-load_library:bunde   
+class MaAnsetro < Processing::App
 load_library :sound
 include_package 'processing.sound'
-include_package 'bunde'
 attr_reader :FFT, :AudioIn
 
   def settings
@@ -41,7 +39,7 @@ attr_reader :FFT, :AudioIn
   def iloza
     @rotacion = 0
     @circulo = 180
-    @frecuencia = 0.000007
+    @frecuencia = 7e-6
     @color = 0
     @tamaño = 0
   end
@@ -58,9 +56,9 @@ attr_reader :FFT, :AudioIn
         @tamaño = p5map @circulo, 150, 100, 2, 1
   
         no_stroke
-        fill @color, 126+sin(millis*0.0001)*126, 126+cos(frame_count*0.01)*126
+        fill @color, (sin(millis*1e-4)*255).abs, (cos(frame_count*1e-2)*255).abs
         ellipse @circulo*sin(a),@circulo*cos(a),@tamaño, @tamaño
-        @rotacion += 0.0003
+        @rotacion += 3e-4
       end
     pop
 
@@ -73,11 +71,11 @@ attr_reader :FFT, :AudioIn
       translate width/2, height/2
 
       for p in 1..15 do
-        stroke 255# 126+sin(frame_count*0.04)*125,126+sin(frame_count*0.03)*125,126+sin(frame_count*0.02)*125
+        stroke 255# (sin(frame_count*0.04)*255).abs,(sin(frame_count*0.03)*255).abs,(sin(frame_count*0.02)*255).abs
         strokeWeight 15
         point x1(@apura+p),y1(@apura+p)
       end
-      @apura += 0.02
+      @apura += 2e-2
     pop
   end
   def x1 arg
@@ -93,8 +91,8 @@ attr_reader :FFT, :AudioIn
     push
       no_fill
       stroke_weight 5# 2*osilacion(@bands/2+cos(millis)*@bands/2)    
-      stroke 255# 126+sin(frame_count*0.04)*125,126+sin(frame_count*0.03)*125,126+sin(frame_count*0.02)*125
-      ellipse width/2, height/2, arg*sin(frame_count*0.010),arg# *sin(frame_count*0.010)
+      stroke 255# (sin(frame_count*0.04)*255).abs,(sin(frame_count*3e-3)*255).abs,(sin(frame_count*2e-2)*255).abs
+      ellipse width/2, height/2, arg*sin(frame_count*10e-3),arg# *sin(frame_count*10e-2)
     pop
   end
   #fin
@@ -104,14 +102,14 @@ attr_reader :FFT, :AudioIn
     push #Lumbá
       text_size 90
       text_align CENTER
-      fill 255# 171+sin(frame_count*0.04)*171, 222, 227+cos(frame_count*0.04)*227
+      fill 255# (sin(frame_count*0.04)*255).abs, 222, (cos(frame_count*0.04)*255).abs
       text "MA ANSETRO",width/2, 200
       text_size 45
       text "PRIMITIVAS", width/2, 250 
     pop
     push #Punto
       fill 255# 234, 35, 90, 85
-      stroke 255# cos(millis*0.05)*255,sin(frame_count*0.03)*255,cos(frame_count*0.02)*255
+      stroke 255# (cos(millis*5e-2)*255).abs,(sin(frame_count*3e-2)*255).abs,(cos(frame_count*2e-2)*255).abs
       strokeWeight 5
       for k in 1..5 do
         ellipse width/2,(height/2)+70,(80/k)+osilacion(@bands/2+sin(frame_count/k)*@bands/2),(80/k)+osilacion(@bands/2+sin(frame_count/k)*@bands/2)
@@ -131,7 +129,7 @@ attr_reader :FFT, :AudioIn
   #fin
 
   def osilacion arg
-    @fft.spectrum[arg]*15#000
+    @fft.spectrum[arg]*15e3
   end
   def nsulu r,g,b,a
     fill r,g,b,a
